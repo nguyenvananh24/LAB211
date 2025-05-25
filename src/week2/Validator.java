@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Validator {
 
     static Scanner sc = new Scanner(System.in);
+
     public static int checkOption2() {
         while (true) {
             try {
@@ -38,7 +39,6 @@ public class Validator {
     public static String checkOperator(String msg) {
         System.out.println(msg);
         String regex = "[+\\-*/=]";
-
         while (true) {
             String op = sc.nextLine();
             if (op.matches(regex)) {
@@ -81,4 +81,19 @@ public class Validator {
         }
     }
 
+    public static int checkIntNumber(String msg) {
+        System.out.println(msg);
+        while (true) {
+            try {
+                int number = Integer.parseInt(sc.nextLine());
+                if (number <= 0) {
+                    throw new IllegalArgumentException("Enter a positive number");
+                }
+                return number;
+            } catch (Exception e) {
+                System.out.println(msg);
+            }
+
+        }
+    }
 }

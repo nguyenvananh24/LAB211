@@ -52,7 +52,6 @@ public class test {
                     } while (choice != 3);
                 }
                 case 2 -> {
-
                     //-----Calculate Perimeter And Area-----//
                     System.out.println("----Calculator Shape Program------");
                     double width = Validator.checkNumber("Please input width of Rectangle: ");
@@ -70,17 +69,74 @@ public class test {
                     triangle.printResult();
                 }
                 case 3 -> {
-                    //-----Matrix------//
                     System.out.println("----Calculator Program-----");
                     System.out.println("1. Add Matrix");
                     System.out.println("2. Subtract Matrix");
                     System.out.println("3. Multiply Matrix");
                     System.out.println("4. Exit");
                     System.out.println("Enter a option: ");
+                    int optionMatrix = Validator.checkOption2();
+
+                    int row, col;
+                    row = Validator.checkIntNumber("Enter row of matrix1: ");
+                    col = Validator.checkIntNumber("Enter col of matrix1: ");
+                    Matrix matrix1 = new Matrix(row, col);
+                    matrix1.inputValueOfMatrix();
+
+                    row = Validator.checkIntNumber("Enter row of matrix2: ");
+                    col = Validator.checkIntNumber("Enter col of matrix2: ");
+                    Matrix matrix2 = new Matrix(row, col);
+                    matrix2.inputValueOfMatrix();
+
+                    switch (optionMatrix) {
+                        case 1 -> {
+                            if (matrix1.getRows() != matrix2.getRows() || matrix1.getCols() != matrix2.getCols()) {
+                                System.out.println("Cannot add two matix");
+                                break;
+                            }
+                            Matrix result = new Matrix(row, col);
+                            result = result.additionMatrix(matrix1, matrix2);
+                            matrix1.printMatrix();
+                            System.out.println("+");
+                            matrix2.printMatrix();
+                            System.out.println("=");
+                            result.printMatrix();
+                        }
+                        case 2 -> {
+                            if (matrix1.getRows() != matrix2.getRows() || matrix1.getCols() != matrix2.getCols()) {
+                                System.out.println("Cannot add two matix");
+                                break;
+                            }
+                            Matrix result = new Matrix(row, col);
+                            result = result.subtractMatrix(matrix1, matrix2);
+                            matrix1.printMatrix();
+                            System.out.println("-");
+                            matrix2.printMatrix();
+                            System.out.println("=");
+                            result.printMatrix();
+
+                        }
+                        case 3 -> {
+                            if (matrix1.getCols() != matrix2.getRows()) {
+                                System.out.println("Cannot subtract matrix");
+                                break;
+                            }
+                            Matrix result = new Matrix(matrix1.getRows(), matrix2.getCols());
+        
+                            result = result.multiplyMatrix(matrix1, matrix2);
+                            matrix1.printMatrix();
+                            System.out.println("*");
+                            matrix2.printMatrix();
+                            System.out.println("=");
+                            result.printMatrix();
+                        }
+                    }
+                }
+                case 4 -> {
+                    System.out.println("Exiting...");
                 }
             }
-        }
-        while (option != 4);
+
+        } while (option != 4);
     }
 }
-

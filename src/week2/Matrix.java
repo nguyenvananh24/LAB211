@@ -1,6 +1,9 @@
 package week2;
 
+import java.util.Scanner;
+
 public class Matrix {
+
     private int[][] matrix;
     private int rows;
     private int cols;
@@ -35,6 +38,14 @@ public class Matrix {
         this.matrix = matrix;
     }
 
+    public int getValue(int row, int col) {
+        return matrix[row][col];
+    }
+
+    public void setValue(int row, int col, int value) {
+        matrix[row][col] = value;
+    }
+
     public void displayMenu() {
         System.out.println("1. Addition Matrix");
         System.out.println("2. Subtraction Matrix");
@@ -43,7 +54,54 @@ public class Matrix {
         System.out.println("Please choice one option: ");
     }
 
-    public void additionMatrix(Matrix a, Matrix b) {
+    public Matrix additionMatrix(Matrix a, Matrix b) {
+        Matrix results = new Matrix(a.rows, a.cols);
+        for (int i = 0; i < a.rows; i++) {
+            for (int j = 0; j < a.cols; j++) {
+                results.setValue(i, j, a.getValue(i, j) + b.getValue(i, j));
+            }
+        }
+        return results;
     }
 
+    public Matrix subtractMatrix(Matrix a, Matrix b) {
+        Matrix results = new Matrix(a.rows, a.cols);
+        for (int i = 0; i < a.rows; i++) {
+            for (int j = 0; j < a.cols; j++) {
+                results.setValue(i, j, a.getValue(i, j) - b.getValue(i, j));
+            }
+        }
+        return results;
+    }
+
+    public Matrix multiplyMatrix(Matrix a, Matrix b) {
+        Matrix results = new Matrix(a.rows, b.cols);
+        for (int i = 0; i < a.rows; i++) {
+            for (int j = 0; j < b.cols; j++) {
+                for (int k = 0; k < a.cols; k++) {
+                    results.setValue(i, j, results.getValue(i, j) + a.getValue(i, k) * b.getValue(k, j));
+                }
+            }
+        }
+        return results;
+    }
+
+    public void inputValueOfMatrix() {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("Enter matrix [" + i + "][" + j + "] = ");
+                setValue(i, j, sc.nextInt());
+            }
+        }
+    }
+
+    public void printMatrix() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.printf("[%d]", getValue(i, j));
+            }
+            System.out.println();
+        }
+    }
 }
