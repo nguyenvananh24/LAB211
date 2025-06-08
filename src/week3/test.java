@@ -44,13 +44,37 @@ public class test {
                 }
                 case 4 -> {
                     Stack stack = new Stack();
-                    stack.push(10);
-                    stack.push(20);
-                    System.out.println("Top value: " + stack.get());
-                    stack.pop();
-                    System.out.println("Top value after pop: " + stack.get());
-                    stack.pop();
-                    stack.pop();
+                    int stackChoice = 0;
+                    do {
+                        System.out.println("---------Stack Operations----------");
+                        System.out.println("1. Push");
+                        System.out.println("2. Pop");
+                        System.out.println("3. Get Top Element");
+                        System.out.println("4. Exit");
+
+                        stackChoice = Validator.checkChoiceMenu("Enter your choice: ");
+
+                        switch (stackChoice) {
+                            case 1 -> {
+                                System.out.println("Enter the value to push: ");
+                                int value = Validator.checkIntNumber();
+                                stack.push(value);
+                            }
+                            case 2 -> {
+                                Integer popValue = stack.pop();
+                                if (popValue != null) {
+                                    System.out.println("Popped value: " + popValue);
+                                }
+                            }
+                            case 3 -> {
+                                Integer topValue = stack.get();
+                                if (topValue != null) {
+                                    System.out.println("Top value in the stack: " + topValue);
+                                }
+                            }
+                            case 4 -> System.out.println("Exiting ...");
+                        }
+                    } while (stackChoice != 4);
 
                 }
             }
