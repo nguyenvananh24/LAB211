@@ -16,17 +16,6 @@ public class Validator {
                 System.out.println("Input cannot be empty. Please try again");
                 continue;
             }
-            boolean isValid = false;
-//            for (Coursera course : courses) {
-//                if (course.getCourseID().equalsIgnoreCase(inp)) {
-//                    isValid = true;
-//                    break;
-//                }
-//            }
-            if (isValid) {
-                System.out.println("Data input is invalid, ID must be unique");
-                continue;
-            }
             return inp;
         }
     }
@@ -37,8 +26,10 @@ public class Validator {
             System.out.print(msg);
             try {
                 credits = Integer.parseInt(sc.nextLine());
-                if (credits > 0) return credits;
-                else System.out.println("Credits must be than 0. Please try again");
+                if (credits > 0)
+                    return credits;
+                else
+                    System.out.println("Credits must be than 0. Please try again");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter again");
                 System.out.println(msg);
@@ -53,8 +44,10 @@ public class Validator {
             System.out.print(msg);
             try {
                 begin = LocalDate.parse(sc.nextLine(), formatter);
-                if (begin.isAfter(LocalDate.now())) return begin;
-                else System.out.println("Begin date must be after today. Please try again");
+                if (begin.isAfter(LocalDate.now()))
+                    return begin;
+                else
+                    System.out.println("Begin date must be after today. Please try again");
             } catch (Exception e) {
                 System.out.println("Invalid date format. Please enter again (DD-MM-YYYY)");
             }
@@ -68,8 +61,10 @@ public class Validator {
             System.out.print(msg);
             try {
                 end = LocalDate.parse(sc.nextLine(), formatter);
-                if (end.isAfter(begin)) return end;
-                else System.out.println("End date must be after begin date. Please try again");
+                if (end.isAfter(begin))
+                    return end;
+                else
+                    System.out.println("End date must be after begin date. Please try again");
             } catch (Exception e) {
                 System.out.println("Invalid date format. Please enter again (DD-MM-YYYY)");
             }
